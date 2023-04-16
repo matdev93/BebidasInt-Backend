@@ -1,14 +1,9 @@
 //* importacion de la Referencia sobre la coleccion con su esquema determinado.
 const User = require('../models/User');
-const crypto = require('crypto');
-
-
 
 const createUser = async(req, res) => {
    
     try {
-
-
         //* Validacion de email
 
         const userEmail = await User.findOne({ email: req.body.email })
@@ -45,7 +40,6 @@ const getUsers = async(req, res) => {
 const editUser = async(req, res) => {
 
     try {
-        // throw new Error('error forzado')
         const {id} = req.auth;
         const contain = req.body;
 
@@ -56,7 +50,6 @@ const editUser = async(req, res) => {
                 throw new Error('Email en uso!')
             }
         })
-
 
         const updateUser = await User.findByIdAndUpdate(id, contain, {new: true}).select('-password -salt -isAdmin');
 
@@ -83,30 +76,23 @@ const login = async(req, res) => {
 
     try {
         const { email, password } = req.body;
-
         const user = await User.findOne({ email })
 
         if(!user){
             throw new Error('Usuario no registrado!!!')
         }
 
-        
         const validatePassword = user.hashValidation(password, user.salt, user.password)
-
 
         if(!validatePassword){
             throw new Error('email o contraseña incorrecta!!!')
         }
 
-        res.json({success: true, msg: 'Has iniciado sesion', token: user.generateToken()})
-
+        res.json({success: true, message: 'Has iniciado sesion', token: user.generateToken()})
 
     } catch (error) {
         res.status(500).json({success: false, message: error.message})
     }
-
-
-    
 }
 
 
@@ -121,7 +107,7 @@ const getUserVerify = async(req, res) => {
     } catch (error) {
         res.status(500).json({success: false, message: error.message})
     }
-}
+};
 
 
 module.exports = {createUser, getUsers, editUser, deleteUser, login, getUserVerify};

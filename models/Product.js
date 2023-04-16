@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema({
       type: Number,
       min: 0.1,
     },
-    color: [cacSpecialSchema],
+    color: [cacSpecialSchema]
   },
   price: {
     type: Number,
@@ -44,6 +44,7 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 0,
+    max: 100,
   },
   image: {
     type: String,
