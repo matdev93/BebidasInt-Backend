@@ -1,6 +1,7 @@
 const express = require('express');
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
+const cors = require("cors");
 
 require('dotenv').config();
 //* traemos la coneccion de nuestra base de datos las servidor
@@ -10,7 +11,7 @@ require('./config/database');
 const app = express();
 
 //* middleware
-
+app.use(cors());
 app.use(express.json());
 
 app.use(userRouter);
