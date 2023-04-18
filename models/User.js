@@ -55,7 +55,7 @@ userSchema.methods.generateToken = function(){
         email: this.email
     }
 
-    const token = jwt.sign(payload, process.env.SECRET, {expiresIn: 900000})
+    const token = jwt.sign(payload, process.env.SECRET, {expiresIn: "7d"})
     return token;
 }
 

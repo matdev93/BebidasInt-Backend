@@ -53,7 +53,7 @@ const editUser = async(req, res) => {
 
         const updateUser = await User.findByIdAndUpdate(id, contain, {new: true}).select('-password -salt -isAdmin');
 
-        res.json({success: true, msg: "usuario actualizado", updateUser})
+        res.json({success: true, msg: "usuario actualizado", info: updateUser})
     } catch (error) {
         res.status(500).json({success: false, message: error.message})
     }
@@ -95,7 +95,6 @@ const login = async(req, res) => {
     }
 }
 
-
 const getUserVerify = async(req, res) => {
     try {
         const { id } = req.auth
@@ -108,6 +107,5 @@ const getUserVerify = async(req, res) => {
         res.status(500).json({success: false, message: error.message})
     }
 };
-
 
 module.exports = {createUser, getUsers, editUser, deleteUser, login, getUserVerify};
