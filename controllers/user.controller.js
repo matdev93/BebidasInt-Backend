@@ -49,6 +49,7 @@ const editUser = async(req, res) => {
             if(userEmail.email === contain.email){
                 throw new Error('Email en uso!')
             }
+        // desafio: ver como mantener el correo sin coincidir con otro correo de BBDD.
         })
 
         const updateUser = await User.findByIdAndUpdate(id, contain, {new: true}).select('-password -salt -isAdmin');
