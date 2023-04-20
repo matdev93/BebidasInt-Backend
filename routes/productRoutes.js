@@ -5,7 +5,7 @@ const { getProducts, createProduct, getProductById, editProduct, deleteProduct }
 
 const productRouter = express.Router();
 
-productRouter.route('/product').post(auth, createProduct).get(getProducts);
+productRouter.route('/products').post(auth, createProduct).get(getProducts);
 
 productRouter.route('/products/:productId').get(getProductById);
 
